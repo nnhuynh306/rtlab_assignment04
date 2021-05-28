@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
 
@@ -14,7 +15,7 @@ import vn.edu.hcmus.fit.mssv18127014_18127208.map.Models.TabFragment;
 import vn.edu.hcmus.fit.mssv18127014_18127208.map.Views.Fragments.DataListFragment;
 import vn.edu.hcmus.fit.mssv18127014_18127208.map.Views.Fragments.MapFragment;
 
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     ArrayList<TabFragment> tabFragments = new ArrayList<>();
 
@@ -45,4 +46,9 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         return tabFragments.get(position).getTitle();
     }
 
+    @Override
+    public int getItemPosition(Object item)
+    {
+        return POSITION_NONE;
+    }
 }

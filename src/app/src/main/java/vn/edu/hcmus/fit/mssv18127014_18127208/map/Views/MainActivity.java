@@ -2,6 +2,8 @@ package vn.edu.hcmus.fit.mssv18127014_18127208.map.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
@@ -18,6 +20,7 @@ import vn.edu.hcmus.fit.mssv18127014_18127208.map.Views.Fragments.MapFragment;
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout ;
+    ViewPager viewPager;
     MainPagerAdapter fragmentPagerAdapter;
 
     @Override
@@ -34,14 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void getViews() {
         this.tabLayout = findViewById(R.id.tabLayout);
+        this.viewPager = findViewById(R.id.viewPager);
     }
 
     private void setupVariables() {
-        this.fragmentPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        this.fragmentPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     private void setupTabLayout() {
-        this.tabLayout.setTabsFromPagerAdapter(this.fragmentPagerAdapter);
+        this.tabLayout.setupWithViewPager(viewPager);
+        this.viewPager.setAdapter(this.fragmentPagerAdapter);
         TabLayout.Tab tab = this.tabLayout.getTabAt(0);
         if (tab != null) {
             tab.select();
