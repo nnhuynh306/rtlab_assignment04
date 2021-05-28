@@ -2,4 +2,10 @@
     <string name="app_name">Map</string>
     <string name="list">list</string>
     <string name="map">map</string>
+    <string name="text_holder">TEXT HOLDER...</string>
+    <string name="region">Region</string>
+    <string name="colon">:</string>
+    <string name="Article">Article</string>
+    <string name="Country">Country</string>
+    <string name="Headline">Headline</string>
 </resources>
