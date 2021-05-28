@@ -19,9 +19,9 @@
 ## Explanation
 ** all loading processes is done in AsyncTasks
 1. Load data:
--- Data will be downloading from url to string
--- Then convert that string to JSONArray and return
+- Data will be downloading from url to string
+- Then convert that string to JSONArray and return
 2. Add map markers after data is loaded:
--- Find coordinates in JSONObjects of JSONArray
--- Use hashmap with key is JSONObject's source_article to prevent duplicates when adding those coordinates
--- Send new coordinates MapFragment using MutableLiveData and add new markers
+- Find coordinates in JSONObjects of JSONArray
+- Use hashmap with key is JSONObject's source_article to prevent duplicates when adding those coordinates
+- Send new coordinates MapFragment using MutableLiveData and add new markers
