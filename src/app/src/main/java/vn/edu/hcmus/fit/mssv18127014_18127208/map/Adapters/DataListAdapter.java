@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.MapView;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,24 +23,24 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import vn.edu.hcmus.fit.mssv18127014_18127208.map.R;
+import vn.edu.hcmus.fit.mssv18127014_18127208.map.ViewModels.MapViewModel;
 
 public class DataListAdapter extends RecyclerView.Adapter<DataListAdapter.ViewHolder> {
 
     private JSONArray jsonArray = new JSONArray();
-    private ArrayList<Boolean> expandedList = new ArrayList<>();
+    private MapViewModel mapViewModel;
 
     private int mExpandedPosition = -1;
 
     Context context;
 
-    public DataListAdapter(Context context) {
+    public DataListAdapter(Context context, MapViewModel mapViewModel) {
+        this.mapViewModel = mapViewModel;
         this.context = context;
     }
 
     public void setJsonArray(JSONArray jsonArray) {
         this.jsonArray = jsonArray;
-        expandedList = new ArrayList<>(Arrays.asList(new Boolean[jsonArray.length()]));
-        Collections.fill(expandedList, Boolean.FALSE);
         notifyDataSetChanged();
     }
 
