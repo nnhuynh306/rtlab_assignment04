@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Map</string>
+    <string name="list">list</string>
+    <string name="map">map</string>
 </resources>
