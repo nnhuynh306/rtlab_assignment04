@@ -39,6 +39,7 @@ import java.net.URL;
 import vn.edu.hcmus.fit.mssv18127014_18127208.map.Adapters.DataListAdapter;
 import vn.edu.hcmus.fit.mssv18127014_18127208.map.R;
 import vn.edu.hcmus.fit.mssv18127014_18127208.map.ViewModels.JSONViewModel;
+import vn.edu.hcmus.fit.mssv18127014_18127208.map.ViewModels.MapViewModel;
 
 public class DataListFragment extends Fragment {
 
@@ -50,6 +51,7 @@ public class DataListFragment extends Fragment {
     private DataListAdapter dataListAdapter;
 
     private JSONViewModel jsonViewModel;
+    private MapViewModel mapViewModel;
 
     private LoadJSONHandler loadJSONHandler;
 
@@ -86,6 +88,7 @@ public class DataListFragment extends Fragment {
     private void setupViewModels() {
         ViewModelProvider viewModelProvider = new ViewModelProvider(requireActivity());
         this.jsonViewModel = viewModelProvider.get(JSONViewModel.class);
+        this.mapViewModel = viewModelProvider.get(MapViewModel.class);
     }
 
     private void getViews(View root) {
@@ -94,12 +97,13 @@ public class DataListFragment extends Fragment {
     }
 
     private void setupAdapter(View root) {
-        this.dataListAdapter = new DataListAdapter(requireContext());
+        this.dataListAdapter = new DataListAdapter(requireContext(), this.mapViewModel);
 
         this.jsonViewModel.getJsonArrayMutableLiveData().observe(getViewLifecycleOwner(), new Observer<JSONArray>() {
             @Override
             public void onChanged(JSONArray jsonArray) {
                 dataListAdapter.setJsonArray(jsonArray);
+                mapViewModel.setNewCoordinatesFromJSONArray(jsonArray);
             }
         });
     }
