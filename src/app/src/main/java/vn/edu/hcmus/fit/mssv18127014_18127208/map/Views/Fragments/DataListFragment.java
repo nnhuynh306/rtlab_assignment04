@@ -58,6 +58,8 @@ public class DataListFragment extends Fragment {
     private int currentPage = 1;
     private EditText currentPageEditText;
 
+    boolean loading = false;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -115,15 +117,22 @@ public class DataListFragment extends Fragment {
 
     private void setupListeners(View root) {
         root.findViewById(R.id.previous_page_btn).setOnClickListener(v -> {
-            if (this.currentPage > 1) {
-                jsonViewModel.loadJSONArray(limit, limit * (currentPage - 1 - 1), loadJSONHandler);
+            if (!this.loading) {
+                if (this.currentPage > 1) {
+                    jsonViewModel.loadJSONArray(limit, limit * (currentPage - 1 - 1), loadJSONHandler);
+                    loading = true;
+                }
             }
         });
 
         root.findViewById(R.id.next_page_btn).setOnClickListener(v -> {
-            jsonViewModel.loadJSONArray(limit, limit * (currentPage - 1 + 1), loadJSONHandler);
+            if (!this.loading) {
+                jsonViewModel.loadJSONArray(limit, limit * (currentPage - 1 + 1), loadJSONHandler);
+                loading = true;
+            }
         });
     }
+
 
     private class LoadJSONHandler extends Handler {
 
@@ -144,6 +153,7 @@ public class DataListFragment extends Fragment {
                 default: {
                     currentPageEditText.setText(String.valueOf(msg.what));
                     currentPage = msg.what;
+                    loading = false;
                 }
             }
         }
