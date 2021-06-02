@@ -1,7 +1,5 @@
 # RTLAB-ASSIGNMENT04
 
-[rtbox](https://rtbox.rta.vn/s/E3ij2DmaNX9LmQj#pdfviewer)
-
 
 - Simple Android Application
 
